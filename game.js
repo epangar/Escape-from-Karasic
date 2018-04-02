@@ -41,10 +41,10 @@ var smugglers = {
  }
  
  function status(){
-   console.log("*************************\n"+"YOUR STATUS:\nName: "+player.name+"\nMiles travelled: "+ player.milesTravelled +"\nMiles to get to your camp: " +(player.milesToCamp-player.milesTravelled)+"\nYour thirst: "+player.thirst+"/6\nWater in your canteen: "+player.water +"/"+player.maxWater+"\nYour ship's heat: "+player.heatShip+"/"+player.maxHeatShip);
+   console.log("*************************\n"+"YOUR STATUS:\nName: "+player.name+"\nMiles travelled so far: "+ player.milesTravelled +"\nMiles to get to your camp: " +(player.milesToCamp-player.milesTravelled)+"\nYour thirst: "+player.thirst+"/6\nWater in your canteen: "+player.water +"/"+player.maxWater+"\nYour ship's heat: "+player.heatShip+"/"+player.maxHeatShip);
    
    if(player.followed===true){
-     console.log("The smugglers are "+(player.distFromSmugglers) +" miles behind you.\n*************************")
+     console.log("The smugglers are "+(player.milesTravelled-smugglers.milesTravelled)+" miles behind you.\n*************************")
    } else {
      console.log("*************************");
    }
@@ -69,7 +69,7 @@ var smugglers = {
    if(result==1){
      console.log("[SANDSTORM()]")
    }  else if (result == 10){
-     console.log("[FRIENDLY VILLAGE()]")
+     village();
    } else if (result==20) {
      console.log("[WANDERER()]")
    } 
@@ -96,30 +96,36 @@ var smugglers = {
      console.log("Your ship overheats so much it explodes in mid-flight. You're dead :(\n\nGAME OVER");
      return "THE END";
    }
+ 
+ 
+   //Check if you're close to being caught
+   
+   if (player.distFromSmugglers<=15 && player.distFromSmugglers>0 && player.followed===true){
+     console.log("Be careful! The smugglers are getting closer!")
+   } else if (player.distFromSmugglers ===0 && smugglers.milesTravelled>0 && player.followed===true){
+     console.log("The smugglers board your ship and shoot you to death.\n\nGAME OVER");
+     return "THE END"
+   }
+   
    
    //Check if the smugglers have noticed you left
    
    if(player.followed === false && player.milesTravelled <20){
      console.log("So long, your escape hasn't been detected.");
    } else if (player.followed === false && player.milesTravelled >=20){
-     var result=Math.floor(Math.random()*2)+1;
-     
-     if (result == 2){
-       console.log("So long, your escape hasn't been detected.");
-     } else {
        player.followed = true;
-       console.log("Suddenly, you get a radio message from the smugglers!\n\n\n 'PRISONER, WE NOTICED YOU HAVE ESCAPED. STAY WHERE YOU ARE.'\n\n\nFrom now on, the smugglers are following your ship, hoping to catch you.")
+       console.log("Suddenly, you get a radio message from the smugglers!\n\n\n 'PRISONER, WE NOTICED YOU HAVE ESCAPED. STAY WHERE YOU ARE.'\n\n\nFrom now on, the smugglers are following your ship, hoping to catch you.");
+       smugglers.milesTravelled=0;
      }
-   }
+
    
    
-   //Check if you're close to being caught
-   
+ 
    
    //Check if there will be a random event
    
    randomEvent();
- }
+  } 
  
  function drink(){
      if (player.water > 1){
@@ -144,6 +150,11 @@ var smugglers = {
    smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
    player.distFromSmugglers+= (player.milesTravelled-smugglers.milesTravelled)
    console.log("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
+   
+   if (player.followed===true){
+   console.log("The smugglers have travelled so far "+smugglers.milesTravelled);
+     
+   }
    checkAll();
    
    }
@@ -156,6 +167,10 @@ var smugglers = {
    smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
    player.distFromSmugglers+= (player.milesTravelled-smugglers.milesTravelled)
    console.log(">>>>FULL SPEED!<<<<\n...\n...\nYou traveled "+result+" miles.");
+   if (player.followed===true){
+   console.log("The smugglers have travelled so far "+smugglers.milesTravelled);
+     
+   }
    checkAll();
  }
    
@@ -166,7 +181,11 @@ var smugglers = {
    console.log("You cooled your ship.")
    smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
    player.distFromSmugglers+= (player.milesTravelled-smugglers.milesTravelled)
-   
+     if (player.followed===true){
+   console.log("The smugglers have travelled so far "+smugglers.milesTravelled);
+     
+   }
+   checkAll();
  
  }
  

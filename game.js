@@ -20,13 +20,11 @@ var smugglers = {
  
  /*Changes:
  
- A function for different endings? Die of thirst, catched by smugglers, arrive safely...
  Different objects for player and ship?
  An object for nomads?
  A constructor for nomads? (3 different nomads)
  There is a way to ask the player without a message appearing?
- A 1d100 for the random events? (Oasis, nomads, sandstorm)? [x]
- An array for turns?
+ A d20 for the random events? (Oasis, nomads, sandstorm)? [x]
  Nomad sells: Sandstorm protection shield, turbo, ship cooler, bigger canteen.
  Nomad sells random price?
  Nomad has a minigame for a free price?
@@ -36,14 +34,14 @@ var smugglers = {
  function start(){
  player.name =prompt("What's your name?");
  
- console.log("ESCAPE FROM KARASIR\n\n\n"+player.name +": you were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the dessert aboard the spaceship.");
+ console.log("ESCAPE FROM KARASIR\n\n\n"+player.name +": you were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.");
  console.log("Don't run out of water or you'll die of thirst.\nDon't let the smugglers catch you or they will kill you on the spot.\nDon't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.");
  }
  
  function status(){
    console.log("*************************\n"+"YOUR STATUS:\nName: "+player.name+"\nMiles travelled so far: "+ player.milesTravelled +"\nMiles to get to your camp: " +(player.milesToCamp-player.milesTravelled)+"\nYour thirst: "+player.thirst+"/6\nWater in your canteen: "+player.water +"/"+player.maxWater+"\nYour ship's heat: "+player.heatShip+"/"+player.maxHeatShip);
    
-   if(player.followed===true){
+   if(player.followed===true && (player.milesTravelled-smugglers.milesTravelled)>=0){
      console.log("The smugglers are "+(player.milesTravelled-smugglers.milesTravelled)+" miles behind you.\n*************************")
    } else {
      console.log("*************************");
@@ -59,7 +57,7 @@ var smugglers = {
    
    player.thirst=0;
    player.water = player.maxWater;
-   player.heatShip
+   player.heatShip=0;
    
  }
  
@@ -79,7 +77,14 @@ var smugglers = {
  
  function checkAll(){
    
-   //Check if the player is alive
+   //Check if you left the dessert
+     if(player.milesTravelled >=200 && player.thirst <= 6 && player.heatShip <= player.maxHeatShip){
+       
+     console.log("YOU ESCAPED FROM THE DESERT AND ARRIVED TO YOUR CAMP!! CONGRATULATIONS!!!");
+     return "THE END";
+   }
+   
+   //Check if the player is thirsty and alive
    
    if(player.thirst>=5 && player.thirst <7){
      console.log("You're thirsty!");
@@ -100,10 +105,8 @@ var smugglers = {
  
    //Check if you're close to being caught
    
-   if (player.distFromSmugglers<=15 && player.distFromSmugglers>0 && player.followed===true){
-     console.log("Be careful! The smugglers are getting closer!")
-   } else if (player.distFromSmugglers <=0 && smugglers.milesTravelled>0 && player.followed===true){
-     console.log("The smugglers board your ship and shoot you to death.\n\nGAME OVER");
+   if (player.followed===true && player.milesTravelled-smugglers.milesTravelled <=0){
+     console.log("The smugglers arrive at your position, board your ship and shoot you to death.\n\nGAME OVER");
      return "THE END"
    }
    
@@ -111,7 +114,7 @@ var smugglers = {
    //Check if the smugglers have noticed you left
    
    if(player.followed === false && player.milesTravelled <20){
-     console.log("So long, your escape hasn't been detected.");
+     console.log("So far, your escape hasn't been detected.");
    } else if (player.followed === false && player.milesTravelled >=20){
        player.followed = true;
        console.log("Suddenly, you get a radio message from the smugglers!\n\n\n 'PRISONER, WE NOTICED YOU HAVE ESCAPED. STAY WHERE YOU ARE.'\n\n\nFrom now on, the smugglers are following your ship, hoping to catch you.");
@@ -119,8 +122,6 @@ var smugglers = {
      }
    
    
-   
- 
    
    //Check if there will be a random event
    
@@ -131,11 +132,11 @@ var smugglers = {
      if (player.water > 1){
      player.water -=1;
      player.thirst=0;
-     console.log("You drink from your canteen");
+     console.log("You drink from your canteen. You're not thirsty anymore.");
      } else if (player.water == 1){
      player.water -=1;
      player.thirst=0;
-     console.log("You drink from your canteen.\nYour canteen is empty!");
+     console.log("You drink from your canteen.  You're not thirsty anymore.\nYour canteen is empty!");
      } else {
        console.log("You can't drink! The canteen is empty!");
      }
@@ -151,10 +152,7 @@ var smugglers = {
    player.distFromSmugglers+= (player.milesTravelled-smugglers.milesTravelled)
    console.log("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
    
-   if (player.followed===true){
-   console.log("The smugglers have travelled so far "+smugglers.milesTravelled);
-     
-   }
+  
    checkAll();
    
    }
@@ -167,10 +165,7 @@ var smugglers = {
    smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
    player.distFromSmugglers+= (player.milesTravelled-smugglers.milesTravelled)
    console.log(">>>>FULL SPEED!<<<<\n...\n...\nYou traveled "+result+" miles.");
-   if (player.followed===true){
-   console.log("The smugglers have travelled so far "+smugglers.milesTravelled);
-     
-   }
+   
    checkAll();
  }
    
@@ -181,19 +176,16 @@ var smugglers = {
    console.log("You cooled your ship.")
    smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
    player.distFromSmugglers+= (player.milesTravelled-smugglers.milesTravelled)
-     if (player.followed===true){
-   console.log("The smugglers have travelled so far "+smugglers.milesTravelled);
-     
-   }
    checkAll();
+   }
  
- }
+ 
  
  
  function ask(){
    status()
    
-   var answer = prompt("This are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier, your ship will heat a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat  some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
+   var answer = prompt("This are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
    if (answer=="a"||answer=="A"){
      drink();
      ask();

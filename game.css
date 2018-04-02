@@ -6,17 +6,23 @@ h2 {
   color: red;
 }
 
-#dashboard {
-  height: 300px;
-  width: 300px;
+.btn{
   background-color: black;
-  float: left;
-
+  color: green;
+  border: 1px green solid;
 }
 
 #screen {
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 500px;
   background-color: yellow;
   float: left;
 }
+
+#dashboard {
+  height: 300px;
+  width: 500px;
+  background-color: black;
+  float: left;
+}
+

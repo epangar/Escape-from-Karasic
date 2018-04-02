@@ -1,0 +1,69 @@
+ESCAPE FROM KARASIC
+
+GAME LOGIC
+
+Player has to check:
+-food rations.
+-hunger 6/6
+-heat of ship 8/8
+
+
+
+
+You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the dessert aboard the spaceship.
+
+Don't run out of food or you'll die of hunger.
+Don't let the bandits catch you or they will kill you on the spot.
+Don't let your spaceship overheat or it will explode and you'll die in the middle of nowhere.
+
+
+-Once you have travelled 20 miles, there's a 50% each turn that the smugglers notice you're gone and go after you.
+	If they don't: you get a message saying nobody has detected your escape.
+	The first time they do: you get an alert with a message and they start going after you.
+	The rest of the time they keep advancing (10,13 miles).
+
+
+-every turn there is 20% chance of a random event:
+	15% (total) to find a nomad
+	10% (total) to find a friendly village
+	5% (total) to find a sandstorm.
+
+
+
+
+Nomad shop
+
+-Icebox
+-Turbo
+-Ship cooler
+-Sandstorm Protection Force Field
+
+Turbo
+
+
+Nomad     15/ 100
+Village   10/ 100
+SandStorm  5/ 100
+
+
+var player = {
+	alive: true,
+	food: 3,
+	maxFood: 3,
+	iceBox : false;
+	shipHeat : 0;
+	shipTurbo: false;
+}
+
+
+
+
+OPTIONS
+
+a) Eat and drink	[You spend one food ration]
+b) Moderate Speed	[You advance a little, the ship heats a little]
+c) FULL SPEED		[You advance more, the ship heats more]
+d) Stop to rest		[You stop to rest, the ship cools a little]
+e) Check your current status
+r) Restart the game	
+q) Quit the game

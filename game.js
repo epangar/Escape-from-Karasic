@@ -102,7 +102,7 @@ var smugglers = {
    
    if (player.distFromSmugglers<=15 && player.distFromSmugglers>0 && player.followed===true){
      console.log("Be careful! The smugglers are getting closer!")
-   } else if (player.distFromSmugglers ===0 && smugglers.milesTravelled>0 && player.followed===true){
+   } else if (player.distFromSmugglers <=0 && smugglers.milesTravelled>0 && player.followed===true){
      console.log("The smugglers board your ship and shoot you to death.\n\nGAME OVER");
      return "THE END"
    }
@@ -117,7 +117,7 @@ var smugglers = {
        console.log("Suddenly, you get a radio message from the smugglers!\n\n\n 'PRISONER, WE NOTICED YOU HAVE ESCAPED. STAY WHERE YOU ARE.'\n\n\nFrom now on, the smugglers are following your ship, hoping to catch you.");
        smugglers.milesTravelled=0;
      }
-
+   
    
    
  
@@ -125,7 +125,7 @@ var smugglers = {
    //Check if there will be a random event
    
    randomEvent();
-  } 
+ }
  
  function drink(){
      if (player.water > 1){

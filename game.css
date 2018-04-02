@@ -5,3 +5,18 @@ h1 {
 h2 {
   color: red;
 }
+
+#dashboard {
+  height: 300px;
+  width: 300px;
+  background-color: black;
+  float: left;
+
+}
+
+#screen {
+  height: 400px;
+  width: 400px;
+  background-color: yellow;
+  float: left;
+}

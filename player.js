@@ -23,6 +23,24 @@ Player.prototype.getsToVillage = function(){
   this.heatShip=0;
 }
 
+//The player finds a sandstorm and is hurt.
+Player.prototype.sandstorm = function(){
+  console.log("***You are trapped in a sandstorm! Your ship shakes back and forth***\n");
+  
+  if(this.water>0){
+    console.log("You lose some water.");
+    this.water-=1;
+  }
+
+  if (this.milesTravelled > 10){
+    this.milesTravelled-=10;
+    console.log("You're sent back 10 miles.");
+  } else {
+    console.log("You see a sandstorm roaring in the horizon...")
+  }
+
+}
+
 //The player's status
 Player.prototype.status = function(){
   console.log("*************************\n"+

@@ -75,11 +75,11 @@ Game.prototype.randomEvent = function(){
   result=Math.floor(Math.random()*20)+1;
  
   if(result==1){
-    console.log("[SANDSTORM()]")
-  }  else if (result ==10){
+    this.player.sandstorm();
+  }  else if (result ==2){
     this.player.getsToVillage();
-  } else if (result==20) {
-    console.log("[WANDERER()]")
+  } else if (result<=20||result>2) {
+    this.nomad.nomadShop();
   }
 
 }

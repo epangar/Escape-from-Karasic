@@ -1,40 +1,10 @@
-var smugglers = {
-  milesTravelled:0,
- }
+var smugglers = new Smugglers();
  
- var player = {
-   name: "",
-   thirst : 0,       //Your thirst over 6
-   heatShip : 0,     //Heat of the ship
-   maxHeatShip: 8,    //Maximum heat the ship can take
-   water : 3,        //water available
-   maxWater : 3,     //Maximum water the canteen can hold
-   milesTravelled : 0, //Miles travelled
-   milesToCamp : 200, //Miles to arrive to camp
-   distFromSmugglers: 0,//How far away you are from the smugglers
-   followed: false, //Have the smugglers noticed you escaped?
- }
- 
- 
- 
- 
- /*Changes:
- 
- Different objects for player and ship?
- An object for nomads?
- A constructor for nomads? (3 different nomads)
- There is a way to ask the player without a message appearing?
- A d20 for the random events? (Oasis, nomads, sandstorm)? [x]
- Nomad sells: Sandstorm protection shield, turbo, ship cooler, bigger canteen.
- Nomad sells random price?
- Nomad has a minigame for a free price?
- 
- */
- 
+var player = new Player();
+  
  function start(){
- player.name =prompt("What's your name?");
  
- console.log("ESCAPE FROM KARASIR\n\n\n"+player.name +": you were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.");
+ console.log("ESCAPE FROM KARASIR\n\n\nYou were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.");
  console.log("Don't run out of water or you'll die of thirst.\nDon't let the smugglers catch you or they will kill you on the spot.\nDon't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.");
  }
  
@@ -46,28 +16,16 @@ var smugglers = {
    } else {
      console.log("*************************");
    }
-   
  
  }
- 
- 
- function village(){
-   
-   console.log("***You found a village inhabited by friendly people.*** \nThey give you water, refill your canteen and help you cool your ship.");
-   
-   player.thirst=0;
-   player.water = player.maxWater;
-   player.heatShip=0;
-   
- }
- 
+  
  function randomEvent(){
    result=Math.floor(Math.random()*20)+1;
  
    if(result==1){
      console.log("[SANDSTORM()]")
    }  else if (result == 10){
-     village();
+     player.getsToVillage();
    } else if (result==20) {
      console.log("[WANDERER()]")
    } 
@@ -128,20 +86,6 @@ var smugglers = {
    randomEvent();
  }
  
- function drink(){
-     if (player.water > 1){
-     player.water -=1;
-     player.thirst=0;
-     console.log("You drink from your canteen. You're not thirsty anymore.");
-     } else if (player.water == 1){
-     player.water -=1;
-     player.thirst=0;
-     console.log("You drink from your canteen.  You're not thirsty anymore.\nYour canteen is empty!");
-     } else {
-       console.log("You can't drink! The canteen is empty!");
-     }
-   
- }
  
  function moderate(){
    var result=Math.floor(Math.random()*5)+6;
@@ -169,7 +113,6 @@ var smugglers = {
    checkAll();
  }
    
- 
  function stop(){
    player.heatShip =0;
    console.log("You stop to rest.\n\n\n");
@@ -179,15 +122,12 @@ var smugglers = {
    checkAll();
    }
  
- 
- 
- 
  function ask(){
    status()
    
    var answer = prompt("This are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
    if (answer=="a"||answer=="A"){
-     drink();
+     player.drinks();
      ask();
    } else if (answer=="b"||answer=="B") {
      moderate();
@@ -199,31 +139,9 @@ var smugglers = {
      stop();
      ask();
    } else if (answer=="r"||answer=="R") {
-     player.name = "";
-     player.thirst = 0
-     player.heatShip = 0     
-     player.maxHeatShip= 8
-     player.water = 3
-     player.maxWater = 3
-     player.milesTravelled = 0
-     player.milesToCamp = 200
-     player.distFromSmugglers= 0 
-     player.followed= false
-     
-     game();
+     player.restart();
    }  else if (answer=="q"||answer=="Q") {
-     player.name = "";
-     player.thirst = 0
-     player.heatShip = 0     
-     player.maxHeatShip= 8
-     player.water = 3
-     player.maxWater = 3
-     player.milesTravelled = 0
-     player.milesToCamp = 200
-     player.distFromSmugglers= 0
-     player.followed= false
- console.log("Bye!");
-     return "The End";
+     player.quit();
    } else {
      alert("Sorry, I don't understand.");
      ask();
@@ -233,9 +151,9 @@ var smugglers = {
    
  }
  
- function game(){
+ function story(){
    start();
    ask();
    
  }
- game();
+ story();

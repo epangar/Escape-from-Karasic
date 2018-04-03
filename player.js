@@ -1,6 +1,6 @@
 // Constructor for Player (and the ship)
 
-function Player() {
+function Player(game, smugglers) {
   this.thirst = 0,          //Your thirst over 6
   this.heatShip = 0,        //Current heat of the ship
   this.maxHeatShip= 8,      //Maximum heat the ship can take
@@ -10,6 +10,9 @@ function Player() {
   this.milesToCamp = 200,   //Miles to arrive to camp
   this.distFromSmugglers= 0,//How far away you are from the smugglers
   this.followed= false;     //Have the smugglers noticed you escaped?
+  this.game= game;
+  this.smugglers=smugglers;
+
 }
 
 //The player gets to village and is healed.
@@ -22,16 +25,17 @@ Player.prototype.getsToVillage = function(){
 
 //The player's status
 Player.prototype.status = function(){
-  console.log("*************************\n"+"YOUR STATUS:\n\nMiles travelled so far: "+ this.player.milesTravelled +"\nMiles to get to your camp: " +(this.player.milesToCamp-this.player.milesTravelled)+"\nYour thirst: "+this.player.thirst+"/6\nWater in your canteen: "+this.player.water +"/"+this.player.maxWater+"\nYour ship's heat: "+this.player.heatShip+"/"+this.player.maxHeatShip);
-  
-  if(this.player.followed===true && (this.player.milesTravelled-smugglers.milesTravelled)>=0){
-    console.log("The smugglers are "+(this.player.milesTravelled-smugglers.milesTravelled)+" miles behind you.\n*************************")
+  console.log("*************************\n"+
+  "YOUR STATUS:\n\nMiles travelled so far: "+ this.milesTravelled +"\nMiles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"\nYour thirst: "+this.thirst+"/6\nWater in your canteen: "+this.water +"/"+this.maxWater+"\nYour ship's heat: "+this.heatShip+"/"+this.maxHeatShip);
+
+  if(this.followed===true && (this.milesTravelled-this.smugglers.milesTravelled)>0){
+    console.log("The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n*************************")
   } else {
     console.log("*************************");
   }
+}
 
-//The player drinks water from the canteen
-
+  //The player drinks water from the canteen
 Player.prototype.drinks = function(){
   if (this.water > 1){
     this.water -=1;
@@ -53,10 +57,10 @@ Player.prototype.moderate = function() {
   this.milesTravelled+= result
   this.thirst+=1;
   this.heatShip+=1
-  smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
-  this.distFromSmugglers+= (this.player.milesTravelled-smugglers.milesTravelled)
+  this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
+  this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
   console.log("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
-  this.checkAll();
+  this.game.checkAll();
 
 }
 
@@ -66,11 +70,10 @@ Player.prototype.fullSpeed = function(){
    this.milesTravelled+= result;
    this.thirst+=1;
    this.heatShip+=  Math.floor(Math.random()*3)+1;
-   smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
-   this.distFromSmugglers+= (this.player.milesTravelled-smugglers.milesTravelled)
+   this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
+   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
    console.log(">>>>FULL SPEED!<<<<\n...\n...\nYou traveled "+result+" miles.");
-   
-   this.checkAll();
+   this.game.checkAll();
 }
 
 
@@ -80,10 +83,10 @@ Player.prototype.stop = function(){
   this.heatShip =0;
   console.log("You stop to rest.\n\n\n");
   console.log("You cooled your ship.")
-  smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
-  this.distFromSmugglers+= (this.player.milesTravelled-smugglers.milesTravelled)
+  this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
+  this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
   
-  this.checkAll();
+  this.game.checkAll();
 }
 
 //The player restarts the game
@@ -98,7 +101,7 @@ Player.prototype.restart = function () {
   this.milesToCamp = 200
   this.distFromSmugglers= 0 
   this.followed= false
-  story();
+  this.game.tellStory();
 }
 
 //The player quits the game
@@ -115,6 +118,5 @@ Player.prototype.quit = function () {
   this.followed= false
   console.log("Bye!");
   return "The End";
+  }
 
-}
-}

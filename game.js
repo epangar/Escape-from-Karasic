@@ -76,11 +76,9 @@ Game.prototype.randomEvent = function(){
  
   if(result==1){
     this.player.sandstorm();
-  }  else if (result ==2){
+  }  else if (result ==20){
     this.player.getsToVillage();
-  } else if (result<=20||result>2) {
-    this.nomad.nomadShop();
-  }
+  } 
 
 }
 
@@ -110,7 +108,7 @@ Game.prototype.checkAll = function(){
  Game.prototype.ask = function (){
    this.player.status();
    
-   var answer = prompt("This are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
+   var answer = prompt("These are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
    if (answer=="a"||answer=="A"){
      this.player.drinks();
      this.ask();

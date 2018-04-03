@@ -207,7 +207,7 @@ var smugglers = {
      player.maxWater = 3
      player.milesTravelled = 0
      player.milesToCamp = 200
-     player.distFromSmugglers= 0
+     player.distFromSmugglers= 0 
      player.followed= false
      
      game();

@@ -1,6 +1,6 @@
 // Constructor for Player (and the ship)
 
-function Player(game, smugglers) {
+function Player(game, smugglers, nomad) {
   this.thirst = 0,          //Your thirst over 6
   this.heatShip = 0,        //Current heat of the ship
   this.maxHeatShip= 8,      //Maximum heat the ship can take

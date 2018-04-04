@@ -1,6 +1,8 @@
 //Constructor for Nomad
-function Nomad(){
+function Nomad(game,player){
   this.choice=0;
+  this.game=game;
+  this.player=player;
 }
 
 Nomad.prototype.play = function(){
@@ -8,9 +10,15 @@ Nomad.prototype.play = function(){
   var answer = this.choice;
 
   if(answer==0){
-    console.log("You win!");
+    console.log("You win the bet! The cyborg opens a wormhole to a further point.");
+    console.log(this.player)
+    this.player.milesTravelled+=15;
+    
   } else {
-    console.log("You lose!")
+    console.log("You lose the bet! You give the cyborg some water and he leaves.");
+    console.log(this.player)
+    this.player.water-=1;
+    
   }
 
 }

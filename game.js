@@ -3,11 +3,13 @@
 function Game() {
   this.smugglers=new Smugglers();
   this.player = new Player(this,this.smugglers);
+  this.nomad = new Nomad(this,this.player);
   this.tellStory();
 }
 
 Game.prototype.start = function(){
   console.log("ESCAPE FROM KARASIR\n\n\nYou were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.\n\n\nDon't run out of water or you'll die of thirst.\nDon't let the smugglers catch you or they will kill you on the spot.\nDon't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.");
+
 }
 
 
@@ -76,9 +78,11 @@ Game.prototype.randomEvent = function(){
  
   if(result==1){
     this.player.sandstorm();
-  }  else if (result >18){
+  }  else if (result ==20){
     this.player.getsToVillage();
-  } 
+  } else if (result > 1|| result <20){
+    this.nomad.bet();
+  }
 
 }
 
@@ -106,11 +110,12 @@ Game.prototype.checkAll = function(){
 
    //Game.prototype.ask
  Game.prototype.ask = function (){
-   this.player.status();
+  this.player.status();
    
    var answer = prompt("These are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
    if (answer=="a"||answer=="A"){
      this.player.drinks();
+
      this.ask();
    } else if (answer=="b"||answer=="B") {
      this.player.moderate();

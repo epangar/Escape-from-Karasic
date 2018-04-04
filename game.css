@@ -1,7 +1,7 @@
 h1 {
   color: green;
   display: flex;
-  align-items: center;
+  align-items: right;
   font-size: 80px;
  }
 
@@ -22,7 +22,7 @@ body {
 #screen {
   height: 300px;
   width: 500px;
-  background-color: yellow;
+  background-color: #e2c160;
   float:left;
 }
 

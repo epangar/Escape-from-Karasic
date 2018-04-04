@@ -80,7 +80,7 @@ Game.prototype.randomEvent = function(){
     this.player.sandstorm();
   }  else if (result ==20){
     this.player.getsToVillage();
-  } else if (result > 1|| result <20){
+  } else if (result ==10){
     this.nomad.bet();
   }
 
@@ -94,13 +94,10 @@ Game.prototype.checkAll = function(){
     this.checkShip();
 
     if(this.checkShip){
+      this.randomEvent();
       this.checkCaught();
     }
         if(cazado==false){
-          console.log("TEST" + cazado)
-          console.log("Ejecutado CheckCaught)")
-          this.randomEvent();
-          console.log("Ejecutado Random)")
 
         }
   this.checkNoticed();

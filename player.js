@@ -17,7 +17,7 @@ function Player(game, smugglers, nomad) {
 
 //The player gets to village and is healed.
 Player.prototype.getsToVillage = function(){
-  console.log("***You found a village inhabited by friendly people.*** \nThey give you water, refill your canteen and help you cool your ship.");
+  $("#console").append("***You found a village inhabited by friendly people.*** \nThey give you water, refill your canteen and help you cool your ship.");
   this.thirst=0;
   this.water = this.maxWater;
   this.heatShip=0;
@@ -25,18 +25,18 @@ Player.prototype.getsToVillage = function(){
 
 //The player finds a sandstorm and is hurt.
 Player.prototype.sandstorm = function(){
-  console.log("***You are trapped in a sandstorm! Your ship shakes back and forth***\n");
+  $("#console").append("***You are trapped in a sandstorm! Your ship shakes back and forth***\n");
   
   if(this.water>0){
-    console.log("You lose some water.");
+    $("#console").append("You lose some water.");
     this.water-=1;
   }
 
   if (this.milesTravelled > 10){
     this.milesTravelled-=10;
-    console.log("You're sent back 10 miles.");
+    $("#console").append("You're sent back 10 miles.");
   } else {
-    console.log("You see a sandstorm roaring in the horizon...")
+    $("#console").append("You see a sandstorm roaring in the horizon...")
   }
 
 }
@@ -44,21 +44,15 @@ Player.prototype.sandstorm = function(){
 //The player's status
 Player.prototype.status = function(){
   $("#status").empty();
-  var texto = "YOUR STATUS:<br><br>Miles travelled so far: "+ this.milesTravelled +"<br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br>Your thirst: "+this.thirst+"/6<br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip;
-
-  console.log("*************************\n"+
-  "YOUR STATUS:\n\nMiles travelled so far: "+ this.milesTravelled +"\nMiles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"\nYour thirst: "+this.thirst+"/6\nWater in your canteen: "+this.water +"/"+this.maxWater+"\nYour ship's heat: "+this.heatShip+"/"+this.maxHeatShip);
+  $("#status").append("YOUR STATUS:<br><br>Miles travelled so far: "+ this.milesTravelled +"<br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br>Your thirst: "+this.thirst+"/6<br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip);
 
   if(this.followed===true && (this.milesTravelled-this.smugglers.milesTravelled)>0){
-    console.log("The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n*************************")
-    texto += "The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n" 
+    ("#status").append("<br>The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n"); 
   } else {
-    console.log("*************************");
-    texto+=""
+  $("#status").append("");
   }
 
-  $("#status").append(texto);
-
+  
 }
 
   //The player drinks water from the canteen
@@ -66,14 +60,13 @@ Player.prototype.drinks = function(){
   if (this.water > 1){
     this.water -=1;
     this.thirst=0;
-    console.log("You drink from your canteen. You're not thirsty anymore.");
-    $("#console").append("You drink from your canteen. You're not thirsty anymore.")
+    $("#console").append("<br><br>*****You drink from your canteen. You're not thirsty anymore.*****<br>")
     } else if (this.water == 1){
     this.water -=1;
     this.thirst=0;
-    console.log("You drink from your canteen.  You're not thirsty anymore.\nYour canteen is empty!");
+    $("#console").append("<br><br>*****You drink from your canteen. You're not thirsty anymore.<br>Your canteen is empty!*****<br>")
     } else {
-      console.log("You can't drink! The canteen is empty!");
+      $("#console").append("You can't drink! The canteen is empty!");
     }
 }
 
@@ -86,7 +79,8 @@ Player.prototype.moderate = function() {
   this.heatShip+=1
   this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
-  console.log("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
+  
+  $("#console").append("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
   this.game.checkAll();
 
 }
@@ -99,7 +93,7 @@ Player.prototype.fullSpeed = function(){
    this.heatShip+=  Math.floor(Math.random()*3)+1;
    this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
    this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
-   console.log(">>>>FULL SPEED!<<<<\n...\n...\nYou traveled "+result+" miles.");
+   $("#console").append(">>>>FULL SPEED!<<<<\n...\n...\nYou traveled "+result+" miles.");
    this.game.checkAll();
 }
 
@@ -108,8 +102,8 @@ Player.prototype.fullSpeed = function(){
 
 Player.prototype.stop = function(){
   this.heatShip =0;
-  console.log("You stop to rest.\n\n\n");
-  console.log("You cooled your ship.")
+  $("#console").append("You stop to rest.\n\n\n");
+  $("#console").append("You cooled your ship.")
   this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
   
@@ -143,7 +137,7 @@ Player.prototype.quit = function () {
   this.milesToCamp = 200
   this.distFromSmugglers= 0
   this.followed= false
-  console.log("Bye!");
+  $("#console").append("Bye!");
   return "The End";
   }
 

@@ -10,11 +10,11 @@ Nomad.prototype.play = function(){
   var answer = this.choice;
 
   if(answer==0){
-    console.log("You win the bet! The cyborg opens a wormhole to a further point, 15 miles away.");
+    ("#console").append("You win the bet! The cyborg opens a wormhole to a further point, 15 miles away.");
     this.player.milesTravelled+=15;
     
   } else {
-    console.log("You lose the bet! You give the cyborg some water and he leaves.");
+    ("#console").append("You lose the bet! You give the cyborg some water and he leaves.");
     this.player.water-=1;
     
   }

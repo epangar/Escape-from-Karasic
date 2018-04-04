@@ -8,7 +8,8 @@ function Game() {
 }
 
 Game.prototype.start = function(){
-  $("#console").append("ESCAPE FROM KARASIR\n\n\nYou were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.\n\n\nDon't run out of water or you'll die of thirst.\nDon't let the smugglers catch you or they will kill you on the spot.\nDon't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.");
+  $("#console").empty(); 
+  $("#console").append("ESCAPE FROM KARASIR<br>You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.<br>Don't run out of water or you'll die of thirst. Don't let the smugglers catch you or they will kill you on the spot. Don't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.<br>");
 
 }
 
@@ -17,6 +18,7 @@ Game.prototype.start = function(){
 //The game checks if you arrived to your camp
 Game.prototype.checkWin = function(){
   if(this.player.milesTravelled >=200 && this.player.thirst <= 6 && this.player.heatShip <= this.player.maxHeatShip){
+    $("#console").empty(); 
     $("#console").append("YOU ESCAPED FROM THE DESERT AND ARRIVED TO YOUR CAMP!! CONGRATULATIONS!!!");
     return true;
   }
@@ -24,6 +26,8 @@ Game.prototype.checkWin = function(){
 }
 //The game checks if you're alive, and how thirsty are you
 Game.prototype.checkAlive = function(){
+
+
   if(this.player.thirst>=5 && this.player.thirst <7){
     $("#console").append("You're thirsty!");
     return true;
@@ -36,6 +40,7 @@ Game.prototype.checkAlive = function(){
 }
 //The game checks if the ship is working
 Game.prototype.checkShip = function(){
+  
    
   if(this.player.heatShip>4 && this.player.heatShip<=8){
     $("#console").append("Your ship is overheating, stopping to rest would be a good idea.")
@@ -52,6 +57,7 @@ Game.prototype.checkShip = function(){
 
 var cazado;
 Game.prototype.checkCaught = function(){
+  
   if (this.player.followed===true && (this.player.milesTravelled-this.smugglers.milesTravelled) <=0){
     $("#console").append("The smugglers arrive at your position, board your ship and shoot you to death.\n\nGAME OVER");
     cazado=true;
@@ -63,6 +69,7 @@ Game.prototype.checkCaught = function(){
 }
 //The game checks if the smugglers noticed you escaped
 Game.prototype.checkNoticed = function(){
+
   if(this.player.followed === false && this.player.milesTravelled <20){
     $("#console").append("So far, your escape hasn't been detected.");
   } else if (this.player.followed === false && this.player.milesTravelled >=20){
@@ -109,37 +116,41 @@ Game.prototype.checkAll = function(){
  Game.prototype.ask = function (){
   this.player.status();
    
-   //var answer = prompt("These are your options:\n\nA. Drink from your canteen (your water reserve will diminish).\nB. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).\nC. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).\nD. Stop to rest (your ship will cool down).\nR. Restart the game\nQ. Quit the game")
   $("#console").append("These are your options:<br><br>1. Drink from your canteen (your water reserve will diminish).<br>2. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).<br>3. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).<br>4. Stop to rest (your ship will cool down).<br>5. Restart the game<br>6. Quit the game")
   
   $("#drink").click(function() {
+    $("#console").empty()
     this.player.drinks();
     this.ask();
   }.bind(this));
 
 
   $("#moderate").click(function() {
+    $("#console").empty()
     this.player.moderate();
     this.ask();
   }.bind(this));
 
   $("#full").click(function() {
-    console.log(this);
+    $("#console").empty()
     this.player.fullSpeed();
     this.ask();
   }.bind(this));
 
   $("#stop").click(function() {
-  this.player.stop();
-  this.ask();
+   $("#console").empty()
+   this.player.stop();
+   this.ask();
   }.bind(this));
 
   $("#restart").click(function() {
-  this.player.restart();
+    $("#console").empty()
+    this.player.restart();
   this.ask();
   }.bind(this));
 
 $("#quit").click(function() {
+  $("#console").empty()
   this.player.quit();
 }.bind(this));
   

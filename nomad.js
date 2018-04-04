@@ -10,11 +10,13 @@ Nomad.prototype.play = function(){
   var answer = this.choice;
 
   if(answer==0){
-    ("#console").append("You win the bet! The cyborg opens a wormhole to a further point, 15 miles away.");
+    $("#console").empty(); 
+    $("#console").append("You win the bet! The cyborg opens a wormhole to a further point, 15 miles away.");
     this.player.milesTravelled+=15;
     
   } else {
-    ("#console").append("You lose the bet! You give the cyborg some water and he leaves.");
+    $("#console").empty(); 
+    $("#console").append("You lose the bet! You give the cyborg some water and he leaves.");
     this.player.water-=1;
     
   }
@@ -27,9 +29,11 @@ Nomad.prototype.bet = function(){
   if (askToPlay=="y"||askToPlay=="Y"){
     this.play();
   } else if(askToPlay=="n"||askToPlay=="N") {
-    alert("The cyborg nomad shrugs and leaves.")
+    $("#console").empty(); 
+    $("#console").append("The cyborg nomad shrugs and leaves.")
   } else {
-    alert("Sorry, human. I don't understand.");
+    $("#console").empty(); 
+    $("#console").append("Sorry, human. I don't understand.");
     this.bet();
   }
 }

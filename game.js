@@ -76,7 +76,7 @@ Game.prototype.randomEvent = function(){
  
   if(result==1){
     this.player.sandstorm();
-  }  else if (result ==20){
+  }  else if (result >18){
     this.player.getsToVillage();
   } 
 

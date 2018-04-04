@@ -8,48 +8,54 @@
   <script src="smugglers.js"></script>
   <script src="nomad.js"></script>
   <script src="game.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="main.js"></script>
-  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
+
+  
   <link rel="stylesheet" href="game.css">
 
 </head>
-
 <body>
-  <h1>ESCAPE FROM KARASIR</h1>
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xl-6">
-        <div id="screen">
-          POV
-        </div>
-        <div id="dashboard" >
+    <header class="test">
+        <div class="container-fluid">
           <div class="row">
-            <h3>These are your options:</h3>
-            <div class="col-lg-3 ">
-            <button class="btn">DRINK WATER</button>
-            <button class="btn">MODERATE SPEED</button>
-            <button class="btn">FULL SPEED</button>
-            <button class="btn">STOP</button>
-            <button class="btn">RESTART</button>
-            <button class="btn">QUIT THE GAME</button>
+            <div class="col-sm-12 text-center">
+              <h1 class="text-center">ESCAPE FROM KARASIR</h1>
+            </div>
           </div>
-          <h3>What do you want to do?</h3>
         </div>
+      </header>
+      <main class="test">
+      <div class="container-fluid" id="main">
+        <div class="row align-items-start" id="main-panel">
+          <div class="col-sm-4 test" id="screen">
+            
+          </div>
+          <div class="col-sm-4 test" id="controls">
+              
+              <button class="btn" id ="drink">DRINK WATER</button>
+              <button class="btn" id ="moderate">MODERATE SPEED</button>
+              <button class="btn" id ="full">FULL SPEED</button>
+              <button class="btn" id ="stop">STOP</button>
+              <button class="btn" id ="restart">RESTART</button>
+              <button class="btn" id ="quit">QUIT THE GAME</button>            
+          </div>
+          <div class="col-sm-4 test" id="status">
+            
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div id = "terminal">
-    "**************<br>Try to escape from the desert."
-
-
-
-
-  </div>
-
+        
+      </main>
+      <footer class="test">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12" id = "console"></div>
+          </div>
+        </div>
+      </footer>
 </body>
 
 </html>

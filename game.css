@@ -1,42 +1,46 @@
-h1 {
-  color: green;
-  display: flex;
-  align-items: right;
-  font-size: 80px;
- }
-
- h3 {
-  color: green; 
- }
-
 body {
+  min-height:100vh;
+  background:black;
+  color: green;
+}
+
+.btn {
   background-color: black;
+  color: green;
+  border: 1px green solid;
+}
+
+h1 {
+  font-size: 80px;
+  color: green;
+  text-align: center;
+}
+
+main {
+  height: 300px;
   }
 
-.btn{
-  background-color: black;
-  color: green;
-  border: 1px green solid;
+footer {
+  min-height: 200px; 
 }
 
-#screen {
+
+#screen{
   height: 300px;
-  width: 500px;
   background-color: #e2c160;
-  float:left;
 }
 
-#dashboard {
+#controls{
+  
   height: 300px;
-  width: 500px;
-  background-color: black;
-  float:left;
-  border: 1px green solid;
+  
 }
 
-#terminal {
-  border: 1px green solid;
-  height: 100px;
-  width: 1000px;
-  color: green;
+#status {
+  height: 300px;
+  
+}
+
+.test {
+  border: 1px solid green;
 }

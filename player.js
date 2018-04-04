@@ -43,14 +43,22 @@ Player.prototype.sandstorm = function(){
 
 //The player's status
 Player.prototype.status = function(){
+  $("#status").empty();
+  var texto = "YOUR STATUS:<br><br>Miles travelled so far: "+ this.milesTravelled +"<br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br>Your thirst: "+this.thirst+"/6<br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip;
+
   console.log("*************************\n"+
   "YOUR STATUS:\n\nMiles travelled so far: "+ this.milesTravelled +"\nMiles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"\nYour thirst: "+this.thirst+"/6\nWater in your canteen: "+this.water +"/"+this.maxWater+"\nYour ship's heat: "+this.heatShip+"/"+this.maxHeatShip);
 
   if(this.followed===true && (this.milesTravelled-this.smugglers.milesTravelled)>0){
     console.log("The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n*************************")
+    texto += "The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n" 
   } else {
     console.log("*************************");
+    texto+=""
   }
+
+  $("#status").append(texto);
+
 }
 
   //The player drinks water from the canteen
@@ -59,6 +67,7 @@ Player.prototype.drinks = function(){
     this.water -=1;
     this.thirst=0;
     console.log("You drink from your canteen. You're not thirsty anymore.");
+    $("#console").append("You drink from your canteen. You're not thirsty anymore.")
     } else if (this.water == 1){
     this.water -=1;
     this.thirst=0;

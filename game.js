@@ -81,7 +81,7 @@ Game.prototype.checkNoticed = function(){
     $("#console").append("So far, your escape hasn't been detected.");
   } else if (this.player.followed === false && this.player.milesTravelled >=20){
       this.player.followed = true;
-      $("#console").append("<br><br>*****Suddenly, you get a radio message from the smugglers!*****<br><br> 'PRISONER, WE NOTICED YOU HAVE ESCAPED. STAY WHERE YOU ARE.'<br><br>From now on, the smugglers are following your ship, hoping to catch you. <br>");
+      $("#console").append("<br>*****Suddenly, you get a radio message from the smugglers!*****<br> 'PRISONER, WE NOTICED YOU HAVE ESCAPED. STAY WHERE YOU ARE.'<br>From now on, the smugglers are following your ship, hoping to catch you. <br>");
       this.smugglers.milesTravelled=0;
     }
 }

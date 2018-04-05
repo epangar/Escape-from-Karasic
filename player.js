@@ -47,7 +47,7 @@ Player.prototype.sandstorm = function(){
 //The player's status
 Player.prototype.status = function(){
   $("#status").empty();
-  $("#status").append("YOUR STATUS:<br>Miles travelled so far: "+ this.milesTravelled +"<br><br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br><br>Your thirst: "+this.thirst+"/6<br><br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br><br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip+"<br>");
+  $("#status").append("<center><b>YOUR STATUS</b></center><br>Miles travelled so far: "+ this.milesTravelled +"<br><br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br><br>Your thirst: "+this.thirst+"/6<br><br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br><br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip+"<br>");
 
   if(this.followed===true && (this.milesTravelled-this.smugglers.milesTravelled)>0){
   $("#status").append("<br>The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n"); 

@@ -6,13 +6,11 @@ body {
 
 .btn {
   background-color: black;
-  color: white;
   border: 1px white solid;
 }
 
 h1 {
   font-size: 80px;
-  color: white;
   text-align: center;
 }
 
@@ -22,12 +20,17 @@ main {
 
 footer {
   min-height: 200px; 
+  font-size: 16px;
+
+
 }
 
 
 #screen{
   height: 300px;
   background-color: black;
+  font-size: 16px;
+
 }
 
 #controls{
@@ -45,7 +48,6 @@ footer {
 
 .black-btn {
   background-color: black;
-  color: white;
 
 }
 
@@ -55,7 +57,7 @@ footer {
 }
 
 
-.test {
+.white-border {
   border: 1px solid white;
 }
 

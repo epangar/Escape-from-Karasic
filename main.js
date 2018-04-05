@@ -15,8 +15,9 @@ $(document).ready(function() {
     if($(this).hasClass("red-btn")){
       $(this).removeClass("red-btn");
     }
-    
   })
 
+  
+  
   
 });

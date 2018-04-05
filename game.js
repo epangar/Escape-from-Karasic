@@ -23,7 +23,6 @@ Game.prototype.checkWin = function(){
     $("#console").append("YOU ESCAPED FROM THE DESERT AND ARRIVED TO YOUR CAMP!! CONGRATULATIONS!!!");
     $(".game-btn").removeClass("red-btn");
     $(".game-btn").addClass("disabled")
-
     return true;
   }
 

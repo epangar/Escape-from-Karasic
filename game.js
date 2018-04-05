@@ -9,8 +9,9 @@ function Game() {
 
 Game.prototype.start = function(){
   $("#console").empty(); 
-  $("#console").append("ESCAPE FROM KARASIR<br>You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.<br>Don't run out of water or you'll die of thirst. Don't let the smugglers catch you or they will kill you on the spot. Don't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.<br>");
-
+  $("#console").append("You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.<br>Don't run out of water or you'll die of thirst. Don't let the smugglers catch you or they will kill you on the spot. Don't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.<br>");
+  $("#screen").append("These are your options:<br><br>1. Drink from your canteen (your water reserve will diminish).<br>2. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).<br>3. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).<br>4. Stop to rest (your ship will cool down).<br>5. Restart the game<br>6. Quit the game")
+  
 }
 
 
@@ -116,37 +117,31 @@ Game.prototype.checkAll = function(){
  Game.prototype.ask = function (){
   this.player.status();
    
-  $("#console").append("These are your options:<br><br>1. Drink from your canteen (your water reserve will diminish).<br>2. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).<br>3. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).<br>4. Stop to rest (your ship will cool down).<br>5. Restart the game<br>6. Quit the game")
   
   $("#drink").click(function() {
     $("#console").empty()
     this.player.drinks();
-    this.ask();
   }.bind(this));
 
 
   $("#moderate").click(function() {
     $("#console").empty()
     this.player.moderate();
-    this.ask();
   }.bind(this));
 
   $("#full").click(function() {
     $("#console").empty()
     this.player.fullSpeed();
-    this.ask();
   }.bind(this));
 
   $("#stop").click(function() {
    $("#console").empty()
    this.player.stop();
-   this.ask();
   }.bind(this));
 
   $("#restart").click(function() {
     $("#console").empty()
     this.player.restart();
-  this.ask();
   }.bind(this));
 
 $("#quit").click(function() {

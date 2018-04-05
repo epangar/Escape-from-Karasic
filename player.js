@@ -53,6 +53,8 @@ Player.prototype.status = function(){
   $("#status").append("<br>The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n"); 
   } else {
   $("#status").append("");
+  console.log("YOUR STATUS:<br><br>Miles travelled so far: "+ this.milesTravelled +"<br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br>Your thirst: "+this.thirst+"/6<br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip);
+
   }
 
   
@@ -73,11 +75,13 @@ Player.prototype.drinks = function(){
     } else {
       $("#console").append("You can't drink! The canteen is empty!");
     }
+    this.game.ask();  
 }
 
 //The player's ship flies at moderate speed
 
 Player.prototype.moderate = function() {
+  var result = 0;
   var result=Math.floor(Math.random()*5)+6;
   console.log(result);
   this.milesTravelled+= result
@@ -87,7 +91,9 @@ Player.prototype.moderate = function() {
   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
     
   $("#console").append("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
-  this.game.checkAll();
+  this.game.checkAll()
+  this.game.ask();
+  
 
 }
 
@@ -103,6 +109,7 @@ Player.prototype.fullSpeed = function(){
     
    $("#console").append(">>>>FULL SPEED!<<<<<br>...<br>...<br>You traveled "+result+" miles.");
    this.game.checkAll();
+   this.game.ask();
 }
 
 
@@ -111,18 +118,19 @@ Player.prototype.fullSpeed = function(){
 Player.prototype.stop = function(){
   this.heatShip =0;
    
-  $("#console").append("You stop to rest.\n\n\n");
+  $("#console").append("You stop to rest.<br><br>");
   $("#console").append("You cooled your ship.")
   this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
   
   this.game.checkAll();
+  this.game.ask();
 }
 
 //The player restarts the game
 
 Player.prototype.restart = function () {
-   
+  $("#screen").empty(); 
   this.thirst = 0
   this.heatShip = 0     
   this.maxHeatShip= 8
@@ -147,7 +155,7 @@ Player.prototype.quit = function () {
   this.milesToCamp = 200
   this.distFromSmugglers= 0
   this.followed= false
-   
+  $("#console").empty(); 
   $("#console").append("Bye!");
   return "The End";
   }

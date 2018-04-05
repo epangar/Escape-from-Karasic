@@ -87,7 +87,7 @@ Player.prototype.moderate = function() {
   this.smugglers.milesTravelled+=Math.floor(Math.random()*4)+10;
   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
     
-  $("#console").append("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
+  $("#console").append("Moderate speed...<br>...<br>You traveled "+result+" miles.");
   this.game.checkAll()
   this.status();
   

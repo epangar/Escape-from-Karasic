@@ -18,7 +18,7 @@ function Player(game, smugglers, nomad) {
 //The player gets to village and is healed.
 Player.prototype.getsToVillage = function(){
    
-  $("#console").append("***You found a village inhabited by friendly people.*** \nThey give you water, refill your canteen and help you cool your ship.");
+  $("#console").append("<br>***You found a village inhabited by friendly people.***<br>They give you water, refill your canteen and help you cool your ship.<br>");
   this.thirst=0;
   this.water = this.maxWater;
   this.heatShip=0;
@@ -30,7 +30,7 @@ Player.prototype.sandstorm = function(){
 
   if (this.milesTravelled > 10){
     this.milesTravelled-=10;
-    $("#console").append("***You are trapped in a sandstorm! Your ship shakes back and forth***");
+    $("#console").append("<br>***You are trapped in a sandstorm! Your ship shakes back and forth***<br>");
     $("#console").append("<br>You're sent back 10 miles. ");
     if(this.water>0){
       $("#console").append("You lose some water!");

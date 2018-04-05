@@ -41,16 +41,18 @@ footer {
   
 }
 
-.red-btn {
-  background-color: red;
-  color: black;
-}
 
 .black-btn {
   background-color: black;
   color: green;
 
 }
+
+.red-btn {
+  background-color: red;
+  color: black;
+}
+
 
 .test {
   border: 1px solid green;

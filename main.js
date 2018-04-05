@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var game = new Game();
-  $("#noButton").click(function(){
+    $("#noButton").click(function(){
     $("#nomadModal").modal("hide");
     $("#console").empty(); 
     $("#console").append("The cyborg nomad shrugs and leaves.")
@@ -12,8 +12,10 @@ $(document).ready(function() {
   })
 
   $(".btn").click(function(){
-    $(".btn").removeClass("red-btn");
-    $(".btn").addClass("black-btn");
+    if($(this).hasClass("red-btn")){
+      $(this).removeClass("red-btn");
+    }
+    
   })
 
 });

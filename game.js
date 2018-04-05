@@ -9,9 +9,9 @@ function Game() {
 
 Game.prototype.start = function(){
   $("#console").empty(); 
-  $("#console").append("You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.<br>Don't run out of water or you'll die of thirst. <br>Don't let the smugglers catch you or they will kill you on the spot. <br>Don't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.<br>");
-  $("#screen").append("These are your options:<br><br>1. Drink from your canteen (your water reserve will diminish).<br>2. Ahead moderate speed (you'll get thirstier,  your ship will heat a little and advance a little).<br>3. Ahead full speed (you'll get thirstier, your ship will heat some more and advance some more).<br>4. Stop to rest (your ship will cool down).<br>5. Restart the game<br>6. Quit the game")
-  
+  $("#console").append("You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. <br>You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. <br>You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.<br>Don't run out of water or you'll die of thirst. <br>Don't let the smugglers catch you or they will kill you on the spot. <br>Don't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.<br>");
+  $("#screen").append("These are your options:<br><br>1. Drink from your canteen (your water reserve will diminish).<br>2. Ahead moderate speed (you'll get thirstier, and your ship will advance a little but also heat a little).<br>3. Ahead full speed (you'll get thirstier, your ship will advance more but also heat more).<br>4. Stop to rest (your ship will cool down).<br>5. Restart the game<br>6. Quit the game")
+  $("#status").append("YOUR STATUS:<br><br>Miles travelled so far: "+ this.player.milesTravelled +"<br>Miles to get to your camp: " +(this.player.milesToCamp-this.player.milesTravelled)+"<br>Your thirst: "+this.player.thirst+"/6<br>Water in your canteen: "+this.player.water +"/"+this.player.maxWater+"<br>Your ship's heat: "+this.player.heatShip+"/"+this.player.maxHeatShip);
 }
 
 
@@ -30,7 +30,7 @@ Game.prototype.checkAlive = function(){
 
 
   if(this.player.thirst>=5 && this.player.thirst <7){
-    $("#console").append("You're thirsty!");
+    $("#console").append("<br>You're thirsty!<br>");
     return true;
   } else if (this.player.thirst>6){
     $("#console").append("You died of thirst! :(<br><br>GAME OVER");
@@ -43,7 +43,7 @@ Game.prototype.checkAlive = function(){
 Game.prototype.checkShip = function(){
    
   if(this.player.heatShip>4 && this.player.heatShip<=8){
-    $("#console").append("Your ship is overheating, stopping to rest would be a good idea.")
+    $("#console").append("<br>Your ship is overheating, stopping to rest would be a good idea.")
     return true;
   } else if (this.player.heatShip>8){
     $("#console").append("Your ship overheats so much it explodes in mid-flight. You're dead :(\n\nGAME OVER");
@@ -58,8 +58,9 @@ Game.prototype.checkShip = function(){
 var cazado;
 Game.prototype.checkCaught = function(){
   
-  if (this.player.followed===true && (this.player.milesTravelled-this.smugglers.milesTravelled) <=0){
-    $("#console").append("The smugglers arrive at your position, board your ship and shoot you to death.\n\nGAME OVER");
+  if (this.player.followed
+    && (this.player.milesTravelled - this.smugglers.milesTravelled) <=0){
+    $("#console").append("<br>*****The smugglers arrive at your position, board your ship and shoot you to death.*****<br>GAME OVER");
     cazado=true;
     return true;
   } else {
@@ -87,7 +88,7 @@ Game.prototype.randomEvent = function(){
     this.player.sandstorm();
   }  else if (result ==20){
     this.player.getsToVillage();
-  } else if (result ==10){
+  } else if (result){
     console.log("Llamando al nómada")
     this.nomad.bet();
   }

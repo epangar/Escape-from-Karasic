@@ -9,6 +9,7 @@
   <script src="nomad.js"></script>
   <script src="game.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <script src="main.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
@@ -56,6 +57,26 @@
           </div>
         </div>
       </footer>
+      <!--MODAL-->
+
+
+
+      <div id="nomadModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                <div class="modal-body">
+                    <p>You find a cyborg nomad wandering across the dunes. He offers you a bet.<br>He'll play with you a game of  Flip the Coin. If you win, he'll open a wormhole which will make you advance 15 miles.<br>If you lose, you have to give him some water. Do you want to play?</p>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id ="noButton" class="btn btn-default" >NO</button>
+                    <button type="button" id ="yesButton" class="btn btn-primary">YES</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </body>
 
 </html>

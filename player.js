@@ -31,13 +31,13 @@ Player.prototype.sandstorm = function(){
   if (this.milesTravelled > 10){
     this.milesTravelled-=10;
     $("#console").append("***You are trapped in a sandstorm! Your ship shakes back and forth***");
-    $("#console").append("You're sent back 10 miles. ");
+    $("#console").append("<br>You're sent back 10 miles. ");
     if(this.water>0){
       $("#console").append("You lose some water!");
         this.water-=1;
       }
   } else {
-    $("#console").append("You see a sandstorm roaring in the horizon...")
+    $("#console").append("<br>You see a sandstorm roaring in the horizon...")
   }
 
 

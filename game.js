@@ -34,6 +34,8 @@ Game.prototype.checkAlive = function(){
     return true;
   } else if (this.player.thirst>6){
     $("#console").append("You died of thirst! <br><br>GAME OVER");
+    $(".game-btn").removeClass("red-btn");
+    $(".game-btn").addClass("disabled")
     return false;
   } else if (this.player.thirst<5){
     return true;
@@ -47,7 +49,9 @@ Game.prototype.checkShip = function(){
     $("#stop").addClass("red-btn");
     return true;
   } else if (this.player.heatShip>8){
-    $("#console").append("Your ship overheats so much it explodes in mid-flight. You're dead :(\n\nGAME OVER");
+    $("#console").append("Your ship overheats so much it explodes in mid-flight. You're dead.<br>GAME OVER");
+    $(".game-btn").removeClass("red-btn");
+    $(".game-btn").addClass("disabled")
     return false;
   } else if (this.player.heatShip<=4){
     return true;
@@ -62,6 +66,7 @@ Game.prototype.checkCaught = function(){
   if (this.player.followed
     && (this.player.milesTravelled - this.smugglers.milesTravelled) <=0){
     $("#console").append("<br>*****The smugglers arrive at your position, board your ship and shoot you to death.*****<br>GAME OVER");
+    $(".game-btn").addClass("disabled")
     cazado=true;
     return true;
   } else {

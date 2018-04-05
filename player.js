@@ -17,7 +17,7 @@ function Player(game, smugglers, nomad) {
 
 //The player gets to village and is healed.
 Player.prototype.getsToVillage = function(){
-   
+  $(".game-btn").removeClass("red-btn") 
   $("#console").append("<br>***You found a village inhabited by friendly people.***<br>They give you water, refill your canteen and help you cool your ship.<br>");
   this.thirst=0;
   this.water = this.maxWater;

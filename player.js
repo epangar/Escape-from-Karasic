@@ -75,13 +75,12 @@ Player.prototype.drinks = function(){
     } else {
       $("#console").append("You can't drink! The canteen is empty!");
     }
-    this.game.ask();  
+    this.status();  
 }
 
 //The player's ship flies at moderate speed
 
 Player.prototype.moderate = function() {
-  var result = 0;
   var result=Math.floor(Math.random()*5)+6;
   console.log(result);
   this.milesTravelled+= result
@@ -92,7 +91,7 @@ Player.prototype.moderate = function() {
     
   $("#console").append("Moderate speed...\n...\n...\nYou traveled "+result+" miles.");
   this.game.checkAll()
-  this.game.ask();
+  this.status();
   
 
 }
@@ -109,7 +108,7 @@ Player.prototype.fullSpeed = function(){
     
    $("#console").append(">>>>FULL SPEED!<<<<<br>...<br>...<br>You traveled "+result+" miles.");
    this.game.checkAll();
-   this.game.ask();
+   this.status();
 }
 
 
@@ -124,7 +123,7 @@ Player.prototype.stop = function(){
   this.distFromSmugglers+= (this.milesTravelled-this.smugglers.milesTravelled)
   
   this.game.checkAll();
-  this.game.ask();
+  this.status();
 }
 
 //The player restarts the game

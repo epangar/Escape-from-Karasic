@@ -129,7 +129,8 @@ Player.prototype.stop = function(){
 //The player restarts the game
 
 Player.prototype.restart = function () {
-  $("#screen").empty(); 
+  $("#screen").empty();
+  $("#status").empty(); 
   this.thirst = 0
   this.heatShip = 0     
   this.maxHeatShip= 8

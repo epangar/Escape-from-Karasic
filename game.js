@@ -9,6 +9,7 @@ function Game() {
 
 Game.prototype.start = function(){
   $("#console").empty(); 
+  $("btn").removeClass("red-btn");
   $("#console").append("You were kidnapped three days ago by smugglers during a space mission to Karasir, a desertic planet. <br>You have managed to escape from their prison, steal some food and a very small, half-broken spaceship. <br>You're trying to get back to your camp, but for that you have to cross the desert aboard the spaceship.<br>Don't run out of water or you'll die of thirst. <br>Don't let the smugglers catch you or they will kill you on the spot. <br>Don't forget to let your ship cool down once in a while or it will overheat and explode and you'll die in the middle of nowhere.<br>");
   $("#screen").append("These are your options:<br><br>1. Drink from your canteen (your water reserve will diminish).<br>2. Ahead moderate speed (you'll get thirstier, and your ship will advance a little but also heat a little).<br>3. Ahead full speed (you'll get thirstier, your ship will advance more but also heat more).<br>4. Stop to rest (your ship will cool down).<br>5. Restart the game<br>6. Quit the game")
   $("#status").append("YOUR STATUS:<br><br>Miles travelled so far: "+ this.player.milesTravelled +"<br>Miles to get to your camp: " +(this.player.milesToCamp-this.player.milesTravelled)+"<br>Your thirst: "+this.player.thirst+"/6<br>Water in your canteen: "+this.player.water +"/"+this.player.maxWater+"<br>Your ship's heat: "+this.player.heatShip+"/"+this.player.maxHeatShip);
@@ -31,6 +32,7 @@ Game.prototype.checkAlive = function(){
 
   if(this.player.thirst>=5 && this.player.thirst <7){
     $("#console").append("<br>You're thirsty!<br>");
+    $("#drink").addClass("red-btn");
     return true;
   } else if (this.player.thirst>6){
     $("#console").append("You died of thirst! :(<br><br>GAME OVER");
@@ -44,6 +46,8 @@ Game.prototype.checkShip = function(){
    
   if(this.player.heatShip>4 && this.player.heatShip<=8){
     $("#console").append("<br>Your ship is overheating, stopping to rest would be a good idea.")
+    $("#stop").addClass("red-btn");
+
     return true;
   } else if (this.player.heatShip>8){
     $("#console").append("Your ship overheats so much it explodes in mid-flight. You're dead :(\n\nGAME OVER");
@@ -88,8 +92,7 @@ Game.prototype.randomEvent = function(){
     this.player.sandstorm();
   }  else if (result ==20){
     this.player.getsToVillage();
-  } else if (result){
-    console.log("Llamando al nómada")
+  } else if (result==10){
     this.nomad.bet();
   }
 
@@ -116,11 +119,11 @@ Game.prototype.checkAll = function(){
 
    //Game.prototype.ask
  Game.prototype.ask = function (){
-  
-   
-  
+
+
   $("#drink").click(function() {
     $("#console").empty()
+    
     this.player.drinks();
   }.bind(this));
 

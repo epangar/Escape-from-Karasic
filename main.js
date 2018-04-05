@@ -11,4 +11,9 @@ $(document).ready(function() {
     game.nomad.play();
   })
 
+  $(".btn").click(function(){
+    $(".btn").removeClass("red-btn");
+    $(".btn").addClass("black-btn");
+  })
+
 });

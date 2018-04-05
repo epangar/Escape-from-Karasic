@@ -14,11 +14,13 @@ Nomad.prototype.play = function(){
     $("#console").empty(); 
     $("#console").append("You win the bet! The cyborg opens a wormhole to a further point, 15 miles away.");
     this.player.milesTravelled+=15;
+    this.player.status();
     
   } else {
     $("#console").empty(); 
     $("#console").append("You lose the bet! You give the cyborg some water and he leaves.");
     this.player.water-=1;
+    this.player.status();
     
   }
 

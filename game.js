@@ -21,6 +21,9 @@ Game.prototype.checkWin = function(){
   if(this.player.milesTravelled >=200 && this.player.thirst <= 6 && this.player.heatShip <= this.player.maxHeatShip){
     $("#console").empty(); 
     $("#console").append("YOU ESCAPED FROM THE DESERT AND ARRIVED TO YOUR CAMP!! CONGRATULATIONS!!!");
+    $(".game-btn").removeClass("red-btn");
+    $(".game-btn").addClass("disabled")
+
     return true;
   }
 

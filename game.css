@@ -1,18 +1,18 @@
 body {
   min-height:100vh;
   background:black;
-  color: green;
+  color: white;
 }
 
 .btn {
   background-color: black;
-  color: green;
-  border: 1px green solid;
+  color: white;
+  border: 1px white solid;
 }
 
 h1 {
   font-size: 80px;
-  color: green;
+  color: white;
   text-align: center;
 }
 
@@ -38,13 +38,14 @@ footer {
 
 #status {
   height: 300px;
+  font-size: 16px;
   
 }
 
 
 .black-btn {
   background-color: black;
-  color: green;
+  color: white;
 
 }
 
@@ -55,7 +56,7 @@ footer {
 
 
 .test {
-  border: 1px solid green;
+  border: 1px solid white;
 }
 
 #nomalModal {

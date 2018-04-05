@@ -109,6 +109,7 @@ Game.prototype.checkAll = function(){
   if(this.checkAlive){
     this.checkShip();
     if(this.checkShip){
+      debugger;
       this.randomEvent();
       this.checkCaught();
     }

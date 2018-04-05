@@ -97,7 +97,6 @@ Player.prototype.moderate = function() {
 //The player's ship flies at full speed
 Player.prototype.fullSpeed = function(){
   var result = Math.floor(Math.random()*6)+10;
-
    this.milesTravelled+= result;
    this.thirst+=1;
    this.heatShip+=  Math.floor(Math.random()*3)+1;
@@ -131,6 +130,7 @@ Player.prototype.restart = function () {
   $("#status").empty(); 
   $(".game-btn").removeClass("red-btn") 
   $(".game-btn").removeClass("disabled")
+  debugger;
   this.thirst = 0
   this.heatShip = 0     
   this.maxHeatShip= 8
@@ -140,7 +140,7 @@ Player.prototype.restart = function () {
   this.milesToCamp = 200
   this.distFromSmugglers= 0 
   this.followed= false
-  this.game.tellStory();
+  this.game.start();
 }
 
 //The player quits the game

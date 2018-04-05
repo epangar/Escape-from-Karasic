@@ -59,6 +59,6 @@ footer {
   border: 1px solid green;
 }
 
-#modal-body {
-  color: black;
+.btn-default {
+  color: green;
 }

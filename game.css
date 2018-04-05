@@ -1,12 +1,12 @@
 body {
   min-height:100vh;
   background:black;
-  color: white;
+  color: green;
 }
 
 .btn {
   background-color: black;
-  border: 1px white solid;
+  border: 1px green;
 }
 
 h1 {
@@ -21,8 +21,6 @@ main {
 footer {
   min-height: 200px; 
   font-size: 16px;
-
-
 }
 
 
@@ -57,10 +55,10 @@ footer {
 }
 
 
-.white-border {
-  border: 1px solid white;
+.my-border {
+  border: 1px solid green;
 }
 
-#nomalModal {
+#modal-body {
   color: black;
 }

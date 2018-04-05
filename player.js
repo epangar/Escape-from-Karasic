@@ -129,6 +129,7 @@ Player.prototype.stop = function(){
 Player.prototype.restart = function () {
   $("#screen").empty();
   $("#status").empty(); 
+  $(".game-btn").removeClass("red-btn") 
   $(".game-btn").removeClass("disabled")
   this.thirst = 0
   this.heatShip = 0     
@@ -145,6 +146,7 @@ Player.prototype.restart = function () {
 //The player quits the game
 
 Player.prototype.quit = function () {
+  //$(".game-btn").addClass("disabled")
   this.thirst = 0
   this.heatShip = 0     
   this.maxHeatShip= 8

@@ -53,7 +53,6 @@ Player.prototype.status = function(){
   $("#status").append("<br>The smugglers are "+(this.milesTravelled-this.smugglers.milesTravelled)+" miles behind you.\n"); 
   } else {
   $("#status").append("");
-  console.log("YOUR STATUS:<br><br>Miles travelled so far: "+ this.milesTravelled +"<br>Miles to get to your camp: " +(this.milesToCamp-this.milesTravelled)+"<br>Your thirst: "+this.thirst+"/6<br>Water in your canteen: "+this.water +"/"+this.maxWater+"<br>Your ship's heat: "+this.heatShip+"/"+this.maxHeatShip);
 
   }
 
@@ -82,7 +81,6 @@ Player.prototype.drinks = function(){
 
 Player.prototype.moderate = function() {
   var result=Math.floor(Math.random()*5)+6;
-  console.log(result);
   this.milesTravelled+= result
   this.thirst+=1;
   this.heatShip+=1
@@ -99,7 +97,7 @@ Player.prototype.moderate = function() {
 //The player's ship flies at full speed
 Player.prototype.fullSpeed = function(){
   var result = Math.floor(Math.random()*6)+10;
-  console.log(result)
+
    this.milesTravelled+= result;
    this.thirst+=1;
    this.heatShip+=  Math.floor(Math.random()*3)+1;
